@@ -5,12 +5,14 @@ import { searchQuran } from '@/lib/api'
 import { SearchResult } from '@quran-web/shared/types/quran'
 import Navbar from '@/components/Navbar'
 import Link from 'next/link'
+import { useSettings } from '@/context/SettingsContext'
 
 export default function SearchPage() {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResult[]>([])
   const [loading, setLoading] = useState(false)
   const [debouncedQuery, setDebouncedQuery] = useState('')
+  const { arabicFont, translationFontSize } = useSettings()
 
   // Debounce query to avoid too many requests
   useEffect(() => {
@@ -88,20 +90,34 @@ export default function SearchPage() {
               className="block p-6 rounded-2xl border border-zinc-100 bg-white hover:border-emerald-300 hover:shadow-md transition-all dark:border-zinc-800 dark:bg-zinc-900"
             >
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 text-sm">
                   <span className="font-bold text-emerald-700">{result.surahNameEnglish}</span>
                   <span className="text-zinc-400">•</span>
-                  <span className="text-zinc-500 text-sm">Ayah {result.ayahNumber}</span>
+                  <span className="text-zinc-500">Ayah {result.ayahNumber}</span>
                 </div>
-                <div className="arabic-text text-xl text-emerald-900 dark:text-emerald-400">
+                <div 
+                  className="text-xl text-emerald-900 dark:text-emerald-400"
+                  style={{ fontFamily: arabicFont }}
+                >
                   {result.surahNameArabic}
                 </div>
               </div>
-              <p className="text-zinc-700 dark:text-zinc-300 italic leading-relaxed">
+              <p 
+                className="text-zinc-700 dark:text-zinc-300 italic leading-relaxed"
+                style={{ fontSize: `${translationFontSize}px` }}
+              >
                 "{result.translation}"
               </p>
             </Link>
           ))}
+          <div className='flex justify-center'>
+            <Link 
+            href="/"
+            className="mb-8 font-medium text-emerald-700 hover:text-emerald-800 transition-colors flex items-center gap-1"
+          >
+            ← Back to all Surahs
+          </Link>
+          </div>
         </div>
       </main>
     </div>

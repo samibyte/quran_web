@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, Amiri } from "next/font/google";
+import { Inter, Amiri, Scheherazade_New } from "next/font/google";
 import "./globals.css";
+import { SettingsProvider } from "@/context/SettingsContext";
+import SettingsSidebar from "@/components/SettingsSidebar";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -9,6 +11,12 @@ const inter = Inter({
 
 const amiri = Amiri({
   variable: "--font-amiri",
+  weight: ["400", "700"],
+  subsets: ["arabic"],
+});
+
+const scheherazade = Scheherazade_New({
+  variable: "--font-scheherazade",
   weight: ["400", "700"],
   subsets: ["arabic"],
 });
@@ -26,12 +34,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${amiri.variable} h-full antialiased`}
+      className={`${inter.variable} ${amiri.variable} ${scheherazade.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-zinc-50 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
-        {children}
+        <SettingsProvider>
+          {children}
+          <SettingsSidebar />
+        </SettingsProvider>
       </body>
     </html>
   );
 }
-
