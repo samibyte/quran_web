@@ -1,0 +1,7 @@
+{
+  "name": "@quran-web/shared",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./types/quran.ts",
+  "types": "./types/quran.ts"
+}
