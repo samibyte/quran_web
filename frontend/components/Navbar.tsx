@@ -7,28 +7,28 @@ export default function Navbar() {
   const { setSidebarOpen } = useSettings()
 
   return (
-    <nav className="sticky dark top-0 z-50 glass border-b border-zinc-200 dark:border-zinc-800 py-4 px-6 mb-8">
+    <nav className="sticky top-0 z-50 border-b border-zinc-200/50 bg-white/80 backdrop-blur-md dark:border-zinc-800/50 dark:bg-zinc-950/90 py-4 px-6 mb-8">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="h-8 w-8 rounded-lg bg-emerald-700 flex items-center justify-center text-white font-bold group-hover:scale-110 transition-transform">
+          <div className="h-8 w-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold group-hover:scale-110 transition-transform shadow-lg shadow-emerald-500/20">
             Q
           </div>
           <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Quran<span className="text-emerald-700">Web</span>
+            Quran<span className="text-emerald-600">Web</span>
           </span>
         </Link>
         
-        <div className="flex items-center gap-4 sm:gap-6">
+        <div className="flex items-center gap-4 sm:gap-8">
           <Link 
             href="/search" 
-            className="text-sm font-medium text-zinc-600 hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-emerald-500 transition-colors"
+            className="text-sm font-semibold text-zinc-600 hover:text-emerald-600 dark:text-zinc-300 dark:hover:text-emerald-400 transition-colors"
           >
             Search
           </Link>
 
           <button
             onClick={() => setSidebarOpen(true)}
-            className="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 transition-colors"
+            className="p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 text-zinc-700 dark:text-zinc-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all border border-transparent hover:border-emerald-200 dark:hover:border-emerald-800/50"
             title="Open Settings"
           >
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -41,7 +41,7 @@ export default function Navbar() {
             href="https://github.com/samibyte/quran_web" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-sm font-medium px-4 py-2 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 hover:opacity-90 transition-opacity items-center gap-2 hidden sm:flex"
+            className="text-sm font-bold h-9 px-5 rounded-full bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 hover:scale-105 active:scale-95 transition-all items-center gap-2 hidden sm:flex shadow-lg shadow-black/10 dark:shadow-white/5"
           >
             GitHub
           </a>
