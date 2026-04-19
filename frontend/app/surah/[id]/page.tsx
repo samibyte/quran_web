@@ -1,7 +1,14 @@
-import { fetchSurah } from '@/lib/api'
+import { fetchSurah, fetchSurahs } from '@/lib/api'
 import AyahItem from '@/components/AyahItem'
 import Navbar from '@/components/Navbar'
 import Link from 'next/link'
+
+export async function generateStaticParams() {
+  const surahs = await fetchSurahs()
+  return surahs.map((surah) => ({
+    id: surah.id.toString(),
+  }))
+}
 
 interface SurahPageProps {
   params: Promise<{ id: string }>

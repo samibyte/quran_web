@@ -3,13 +3,13 @@ import { Surah, SurahMeta, SearchResult } from '@quran-web/shared/types/quran'
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
 
 export async function fetchSurahs(): Promise<SurahMeta[]> {
-  const res = await fetch(`${API_BASE}/surahs`)
+  const res = await fetch(`${API_BASE}/surahs`, { cache: 'force-cache' })
   if (!res.ok) throw new Error('Failed to fetch surahs')
   return res.json()
 }
 
 export async function fetchSurah(id: number | string): Promise<Surah> {
-  const res = await fetch(`${API_BASE}/surah/${id}`)
+  const res = await fetch(`${API_BASE}/surah/${id}`, { cache: 'force-cache' })
   if (!res.ok) throw new Error(`Failed to fetch surah ${id}`)
   return res.json()
 }
