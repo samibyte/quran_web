@@ -14,16 +14,9 @@ import searchRoute from './routes/search'
 // Load Quran data ONCE into memory at startup
 // ---------------------------------------------------------------------------
 
-const dataPath = path.join(__dirname, 'data', 'quran.json')
-
-if (!fs.existsSync(dataPath)) {
-  console.error(`❌ quran.json not found at ${dataPath}`)
-  console.error('   Run: npx tsx scripts/download-data.ts')
-  process.exit(1)
-}
-
-const quranData: Surah[] = JSON.parse(fs.readFileSync(dataPath, 'utf-8'))
-console.log(`✅ Loaded ${quranData.length} surahs into memory`)
+import quranDataRaw from './data/quran.json'
+const quranData = quranDataRaw as Surah[]
+console.log(`✅ Loaded ${quranData.length} surahs into memory via static import`)
 
 // ---------------------------------------------------------------------------
 // Hono app setup
