@@ -65,13 +65,14 @@ app.get('/health', (c) => c.json({ status: 'ok', surahs: quranData.length }))
 app.notFound((c) => c.json({ error: 'Route not found' }, 404))
 
 // ---------------------------------------------------------------------------
-// Start server
+// Start server (Local only)
 // ---------------------------------------------------------------------------
 
-const PORT = Number(process.env.PORT) || 3001
-
-serve({ fetch: app.fetch, port: PORT }, () => {
-  console.log(`🚀 Quran API running at http://localhost:${PORT}`)
-})
+if (process.env.NODE_ENV !== 'production' || process.env.VERCEL !== '1') {
+  const PORT = Number(process.env.PORT) || 3001
+  serve({ fetch: app.fetch, port: PORT }, () => {
+    console.log(`🚀 Quran API running at http://localhost:${PORT}`)
+  })
+}
 
 export default app
